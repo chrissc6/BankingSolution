@@ -9,12 +9,15 @@ namespace BankingProject
 {
     class Account
     {
-        //data
+        //data---
+
+        private static int nextId = 1;
+
         private int Id { get; set; }
         private string Description { get; set; }
         private double Balance { get; set; }
 
-        //methods
+        //methods---
         public int GetId()
         {
             return Id;
@@ -37,33 +40,92 @@ namespace BankingProject
 
         public void Deposit(double Amount)
         {
-            Balance += Amount;
+            if(Amount <= 0)
+            {
+                Console.WriteLine("Deposit amount must be positive.");
+            }
+            else
+            {
+                Balance += Amount;
+            }
         }
 
         public void Withdraw(double Amount)
         {
-            Balance -= Amount;
+            if (Amount <= 0)
+            {
+                Console.WriteLine("Withdrawl amount must be positive.");
+                return;
+            }
+
+            if(Amount > Balance)
+            {
+                Console.WriteLine("Insufficient funds for withdraw.");
+                return;
+            }
+
+            else
+            {
+                Balance -= Amount;
+            }
+
+
+
+
+            //if(Amount > Balance || Amount <= 0)
+            //{
+            //    if (Amount > Balance)
+            //    {
+            //        Console.WriteLine("Insufficient funds.");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Withdrawl amount must be positive.");
+            //    }
+            //}
+            //else
+            //{
+            //    Balance -= Amount;
+            //}
         }
 
-        public void Print()
+        public virtual string Print()
         {
-            Console.WriteLine($"Id={Id}, Description={Description}, Balance={Balance}");
+            return $"Id={Id}, Description={Description}, Balance={Balance}";
         }
 
-        //create constructors
+        public void TransferTo(double Amount, Account Acct)
+        {
+            var BalanceBeforeWithdraw = GetBalance();
+            Withdraw(Amount);
+            var BalanceAfterWithdraw = GetBalance();
+            if(BalanceBeforeWithdraw == BalanceAfterWithdraw)
+            {
+                Console.WriteLine("Insufficient funds for transfer");
+                return;
+            }
+            Acct.Deposit(Amount);
+        }
+
+        //create constructors---
 
         public Account(string NewDescription)
         {
-            Id = -1;
-            Description = NewDescription;
+            Id = nextId++;
+            if(NewDescription == null)
+            {
+                Description = "NewAccount";
+            }
+            else
+            {
+                Description = NewDescription;
+            }
             Balance = 0;
-        }
+        }  //SetDescription(NewDescription);
 
-        public Account()
+        public Account() : this(null) //This constructor calls the other constructor, passes null value
         {
-            Id = -1;
-            Description = "NewAccount";
-            Balance = 0;
+           
         }
     }
 }
