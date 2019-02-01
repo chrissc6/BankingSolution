@@ -12,6 +12,18 @@ namespace BankingProject
         {
 
             //creation of checking accounts---
+
+            Checking chk0 = new Checking();
+            Console.WriteLine(chk0.Print());
+
+            Checking chk01 = new Checking("New Checking 0");
+            Console.WriteLine(chk01.Print());
+            chk01.Deposit(300);
+            Console.WriteLine(chk01.Print());
+            chk01.Withdraw(100);
+            Console.WriteLine(chk01.Print());
+
+
             var chk1 = new Checking("My First Checking Acct");
             Console.WriteLine(chk1.Print());
 
@@ -35,18 +47,18 @@ namespace BankingProject
             sav3.Deposit(100);
             Console.WriteLine(sav3.Print());
 
-            //creation of a collection---
-            List<Account> accounts = new List<Account>();
-            accounts.Add(chk1);
-            accounts.Add(chk2);
-            accounts.Add(sav1);
-            accounts.Add(sav2);
-            accounts.Add(sav3);
+            ////creation of a collection---
+            //List<Account> accounts = new List<Account>();
+            //accounts.Add(chk1);
+            //accounts.Add(chk2);
+            //accounts.Add(sav1);
+            //accounts.Add(sav2);
+            //accounts.Add(sav3);
 
-            foreach (var account in accounts)
-            {
-                Console.WriteLine(account.Print());
-            }
+            //foreach (var account in accounts)
+            //{
+            //    Console.WriteLine(account.Print());
+            //}
 
             //transfer methods for savings accounts---
             //sav2.TransferTo(200, sav3);

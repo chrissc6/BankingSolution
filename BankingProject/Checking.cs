@@ -6,26 +6,61 @@ using System.Threading.Tasks;
 
 namespace BankingProject
 {
-    class Checking : Account
+    class Checking //not inheritance, using composition
     {
         //data---
-        private int NextCheckNbr { get; set; } = 1; //different than id, because each checking acct have own checknbr
+        private Account account { get; set; }
 
+        private int NextCheckNbr { get; set; } = 1; //different than id, because each checking acct has own checknbr
+
+        //methods
         public int GetNextCheckNbr()
         {
             return NextCheckNbr;
         }
 
-        public override string Print()
+        public decimal GetBalance()
         {
-            return base.Print() + $", Next Check Number = {NextCheckNbr}";
+            return account.GetBalance();
+        }
+
+        public string GetDescription()
+        {
+            return account.GetDescription();
+        }
+
+        public void SetDescription(string NewDescription)
+        {
+            account.SetDescription(NewDescription);
+        }
+
+        public void Deposit(decimal Amount)
+        {
+            account.Deposit(Amount);
+        }
+
+        public void Withdraw(decimal Amount)
+        {
+            account.Withdraw(Amount);
+        }
+
+        public string Print()
+        {
+            return account.Print() + $", Next Check Number = {NextCheckNbr}";
+        }
+
+        public int GetId()
+        {
+            return account.GetId();
         }
 
         //constructors---
-        public Checking(string NewDescription) : base(NewDescription)
-        { }
+        public Checking(string NewDescription)
+        {
+            account = new Account(NewDescription);
+        }
 
-        public Checking() : this(null)
+        public Checking() :this(null)
         { }
     }
 }

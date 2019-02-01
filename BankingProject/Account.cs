@@ -15,7 +15,7 @@ namespace BankingProject
 
         private int Id { get; set; }
         private string Description { get; set; }
-        private double Balance { get; set; }
+        private decimal Balance { get; set; }
 
         //methods---
         public int GetId()
@@ -33,12 +33,12 @@ namespace BankingProject
             Description = NewDescription;
         }
 
-        public double GetBalance()
+        public decimal GetBalance()
         {
             return Balance;
         }
 
-        public void Deposit(double Amount)
+        public void Deposit(decimal Amount)
         {
             if(Amount <= 0)
             {
@@ -50,7 +50,7 @@ namespace BankingProject
             }
         }
 
-        public void Withdraw(double Amount)
+        public void Withdraw(decimal Amount)
         {
             if (Amount <= 0)
             {
@@ -94,7 +94,7 @@ namespace BankingProject
             return $"Id={Id}, Description={Description}, Balance={Balance}";
         }
 
-        public void TransferTo(double Amount, Account Acct)
+        public void TransferTo(decimal Amount, Account Acct)
         {
             var BalanceBeforeWithdraw = GetBalance();
             Withdraw(Amount);
@@ -121,6 +121,8 @@ namespace BankingProject
                 Description = NewDescription;
             }
             Balance = 0;
+
+            //var error = 0 / Balance; //bug creation
         }  //SetDescription(NewDescription);
 
         public Account() : this(null) //This constructor calls the other constructor, passes null value

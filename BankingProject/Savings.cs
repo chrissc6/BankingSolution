@@ -9,15 +9,15 @@ namespace BankingProject
     class Savings : Account //inheritance of account class
     {
         //data---
-        private double IntRate { get; set; } = 0.01;
+        private decimal IntRate { get; set; } = 0.01M;
 
         //methods---
-        public double GetIntRate()
+        public decimal GetIntRate()
         {
             return IntRate;
         }
 
-        public void SetIntRate(double NewIntRate)
+        public void SetIntRate(decimal NewIntRate)
         {
             IntRate = NewIntRate;
         }
