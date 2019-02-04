@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankingProject
 {
-    class Checking //not inheritance, using composition
+    class Checking : IAccount //not inheritance, using composition, also implements iprintable interface
     {
         //data---
         private Account account { get; set; }
@@ -14,6 +14,11 @@ namespace BankingProject
         private int NextCheckNbr { get; set; } = 1; //different than id, because each checking acct has own checknbr
 
         //methods
+        public void TransferTo(decimal Amount, Account account)
+        {
+
+        }
+
         public int GetNextCheckNbr()
         {
             return NextCheckNbr;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BankingProject
 {
-    class Account
+    class Account : IComparable<Account>, IAccount //using a interface, to sort the class & print
     {
         //data---
 
@@ -18,6 +18,17 @@ namespace BankingProject
         private decimal Balance { get; set; }
 
         //methods---
+        public int CompareTo(Account acct) //account class is now sortable with this method
+        {
+            //if (this.Description == acct.Description)
+            if(this.Description.Equals(acct.Description)) //better way
+                return 0;
+            else if (this.Description.CompareTo(acct.Description) > 0)
+                return 1;
+            else
+                return -1;
+        }
+
         public int GetId()
         {
             return Id;

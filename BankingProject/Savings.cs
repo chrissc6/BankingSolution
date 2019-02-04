@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankingProject
 {
-    class Savings : Account //inheritance of account class
+    class Savings : Account, IAccount //inheritance of account class, and implements the iprintable interface
     {
         //data---
         private decimal IntRate { get; set; } = 0.01M;
