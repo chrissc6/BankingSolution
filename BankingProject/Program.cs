@@ -16,12 +16,33 @@ namespace BankingProject
                 new Savings("A Savings"),
                 new Checking("A Checking")
             };
+
+            try
+            {
+                accounts[0].Deposit(-10);
+            }
+            catch (DepositWithdrawTransferException ex)
+            {
+                Console.WriteLine("Amount must be positive");
+            }
+
+            //try
+            //{
+            //    accounts[0].Withdraw(100000000);
+            //}
+            //catch(InsufficientFundsException ex)
+            //{
+            //    Console.WriteLine("Insufficient funds ....");
+            //}
+
+
             foreach (var account in accounts)
             {
-                //IAccount acct = account as IAccount;
                 
                 Console.WriteLine(account.Print());
             }
+
+            Console.ReadKey();
 
             //Account acctx = new Account("abc");
             //Account acctxyz = new Account("xyz");

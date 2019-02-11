@@ -53,7 +53,8 @@ namespace BankingProject
         {
             if(Amount <= 0)
             {
-                Console.WriteLine("Deposit amount must be positive.");
+                throw new DepositWithdrawTransferException("Deposit amount must be positive.");
+                //Console.WriteLine("Deposit amount must be positive.");
             }
             else
             {
@@ -65,14 +66,16 @@ namespace BankingProject
         {
             if (Amount <= 0)
             {
-                Console.WriteLine("Withdrawl amount must be positive.");
-                return;
+                throw new DepositWithdrawTransferException("Withdrawl amount must be positive.");
+                //Console.WriteLine("Withdrawl amount must be positive.");
+                //return;
             }
 
             if(Amount > Balance)
             {
-                Console.WriteLine("Insufficient funds for withdraw.");
-                return;
+                throw new InsufficientFundsException("Insufficient funds for withdraw"); //no return needed with exception
+                //Console.WriteLine("Insufficient funds for withdraw.");
+                //return;
             }
 
             else
@@ -112,8 +115,9 @@ namespace BankingProject
             var BalanceAfterWithdraw = GetBalance();
             if(BalanceBeforeWithdraw == BalanceAfterWithdraw)
             {
-                Console.WriteLine("Insufficient funds for transfer");
-                return;
+                throw new InsufficientFundsException("Insufficient funds for transfer");
+                //Console.WriteLine("Insufficient funds for transfer");
+                //return;
             }
             Acct.Deposit(Amount);
         }
