@@ -60,6 +60,12 @@ namespace BankingProject
         }
 
         //constructors---
+        //public Checking(Account acct) //dependency injection
+        //{
+        //    account = acct;
+        //}
+
+
         public Checking(string NewDescription)
         {
             account = new Account(NewDescription);

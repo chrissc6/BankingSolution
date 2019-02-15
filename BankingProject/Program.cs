@@ -10,11 +10,14 @@ namespace BankingProject
     {
         static void Main(string[] args)
         {
+            Account acct4chk = new Account();
+
             IAccount[] accounts =
             {
                 new Account("An Account"),
                 new Savings("A Savings"),
-                new Checking("A Checking")
+                new Checking("A Checking"),
+                //new Checking(acct4chk)
             };
 
             try
